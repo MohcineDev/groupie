@@ -21,7 +21,7 @@ func GetArtist(res http.ResponseWriter, req *http.Request) {
 		http.NotFound(res, req)
 		return
 	}
-	err = tmpl.Execute(res, ArtistsObj[id])
+	err = tmpl.Execute(res, ArtistsObj[id-1])
 	if err != nil {
 		fmt.Println(err)
 	}

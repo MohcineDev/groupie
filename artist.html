@@ -23,6 +23,21 @@
             box-shadow: 6px 6px 10px #ddd;
             text-transform: capitalize;
         }
+p.members{
+    margin-bottom: 0;
+}
+        div.members {
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+        }
+
+        div.members span {
+            background: #fff;
+            margin: 5px;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #9f9f9f;
+        }
     </style>
 </head>
 
@@ -30,7 +45,11 @@
     <div class="container">
 
         <p>name :<span> {{.Name}}</span></p>
-        <p>members : {{range .Members}} <span> {{.}} </span>{{end}}</p>
+        <p class="members">members :</p>
+        <div class="members">
+
+            {{range .Members}} <span> {{.}} </span>{{end}}
+        </div >
         <p>creationDate :<span> </span></p>
         <p>firstAlbum :<span> </span></p>
         <p>locations :<span> </span></p>
