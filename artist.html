@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            background: #eee;
+            padding: 1rem;
+            background: #eee;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 6px 6px 10px #ddd;
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <p>name :<span> {{.Name}}</span></p>
+        <p>members : {{range .Members}} <span> {{.}} </span>{{end}}</p>
+        <p>creationDate :<span> </span></p>
+        <p>firstAlbum :<span> </span></p>
+        <p>locations :<span> </span></p>
+        <p>concertDates :<span> </span></p>
+        <p>relations :<span> </span></p>
+    </div>
+
+</body>
+
+</html>

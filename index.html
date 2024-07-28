@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>groupie-tracker</title>
+    <link rel="stylesheet" href="./styles/style.css">
+
+</head>
+
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+    </nav>
+    <h1>You may also like</h1>
+    <div class="container">
+
+        {{range .}}
+        <div class="card">
+            <div class="item">
+                <img class="name" src="{{.Img}}" />
+                <h3 class="name">{{.Name}}</h3>
+                <span>
+                    <a href="artists/{{.ID}}">
+                        {{.ID}}
+                    </a>
+                </span>
+            </div>
+        </div>
+        {{end}}
+    </div>
+</body>
+
+</html>
