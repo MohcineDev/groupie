@@ -59,3 +59,11 @@ div.tags span {
     border-radius: 5px;
     box-shadow: 0 0 5px #9f9f9f;
 }
+
+.relation{
+
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    font-size: 14px;
+    color: #323232;
+}

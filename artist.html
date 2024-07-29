@@ -33,15 +33,19 @@
         </div>
         <p>dates Locations :
 
-        <div class="tags">
-            {{range $index, $elem:= .Relation.RelationD }} <span> {{$index}}
+        <div class="relation">
+            {{range $index, $elem:= .Relation.RelationD }} 
+            <div>
+                 {{$index}}
 
                 <select name="" id="">
                     {{range $elem}}
                     <option value="">{{.}}</option>
                     {{end}}
                 </select>
-            </span>{{end}}
+            </div>
+
+            {{end}}
         </div>
 
     </div>
