@@ -19,7 +19,6 @@
     </nav>
     <h1>You may also like</h1>
     <div class="container">
-
         {{range .}}
         <div class="card">
             <a href="/artists/{{.ID}}">
@@ -35,6 +34,9 @@
         </div>
         {{end}}
     </div>
+    <footer>
+        <p>groupie-tracker &copy; <script>document.write(new Date().getFullYear())</script></p>
+    </footer>
 </body>
 
 </html>
