@@ -65,7 +65,7 @@ div.tags span {
 .relation {
 
     display: grid;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(2, 1fr);
     font-size: 14px;
     color: #323232;
     gap: 1rem;
