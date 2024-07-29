@@ -50,7 +50,7 @@ h1 {
 .item {
     background-color: #101020;
     margin: 1rem;
-    border-radius:  10px 10px 0 0;
+    border-radius: 10px 10px 0 0;
     padding: 1rem 1rem 4rem;
     color: #fff;
     background: linear-gradient(#fff, var(--blue));
@@ -59,23 +59,26 @@ h1 {
     cursor: pointer;
     position: relative;
 }
-.item:nth-child(even) svg{
+
+.item:nth-child(even) svg {
     border: 5px solid red;
 }
-svg{
+
+svg {
     position: absolute;
     bottom: -5px;
-  right: 0;
-  transform: rotate(180deg);
+    right: 0;
+    transform: rotate(180deg);
 
 }
+
 .item:hover {
     transform: translate(5px, 5px);
 }
 
 img {
     border-radius: var(--radius) 0 var(--radius) 0;
-    border: 2px dotted var(--orange);
+  
     width: 100%;
     box-shadow: 0 0 5px #fff;
 }

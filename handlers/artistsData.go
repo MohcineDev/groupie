@@ -8,14 +8,16 @@ import (
 	"os"
 )
 
-type Res []struct {
-	ID      int      `json:"id"`
-	Img     string   `json:"image"`
-	Name    string   `json:"name"`
-	Members []string `json:"members"`
+type Res struct {
+	ID           int      `json:"id"`
+	Img          string   `json:"image"`
+	Name         string   `json:"name"`
+	Members      []string `json:"members"`
+	CreationDate int      `json:"creationDate"`
+	FirstAlbum   string   `json:"firstAlbum"`
 }
 
-var ArtistsObj Res
+var ArtistsObj []Res
 
 func GetArtistsData() {
 	const URL = "https://groupietrackers.herokuapp.com/api/artists"

@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
 	"text/template"
 )
@@ -13,6 +14,7 @@ func HandleHome(res http.ResponseWriter, req *http.Request) {
 	}
 	err = tmpl.Execute(res, ArtistsObj)
 	if err != nil {
+		fmt.Println(err)
 		panic(err)
 	}
 }

@@ -13,8 +13,7 @@ func main() {
 
 	///server
 	http.HandleFunc("/", handlers.HandleHome)
-	http.HandleFunc("/artists/{id}", handlers.GetArtist)
-
+	http.HandleFunc("/artists/", handlers.GetArtist)
 	handlers.GetArtistsData()
 	const PORT = "8000"
 	fmt.Printf("running on %v...", PORT)
