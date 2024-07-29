@@ -1,18 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Salsa&display=swap');
-
-:root {
-    --blue: #180161;
-    --purple: #4F1787;
-    --red: #EB3678;
-    --orange: #FB773C;
-    --radius: 50px;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-}
-
 nav {
     background: var(--purple);
     padding: 15px;
@@ -78,10 +63,21 @@ svg {
 
 img {
     border-radius: var(--radius) 0 var(--radius) 0;
-  
+
     width: 100%;
     box-shadow: 0 0 5px #fff;
 }
+
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+    .card {
+        margin: 0;
+    }
+
+}
+
 
 @media only screen and (max-width: 768px) {
 
@@ -100,6 +96,10 @@ img {
 
     h1 {
         font-size: 26px;
+    }
+
+    svg {
+        display: none;
     }
 
     .container {
