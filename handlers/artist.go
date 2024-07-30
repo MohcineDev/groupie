@@ -65,6 +65,7 @@ func GetArtist(res http.ResponseWriter, req *http.Request) {
 	if er != nil {
 		/////500
 		http.Error(res, "Internal Server Error!!!!!!!!", http.StatusInternalServerError)
+		return
 	}
 	result := Data{
 		Old:      ArtistsObj[id-1],
@@ -76,6 +77,7 @@ func GetArtist(res http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		/////500
 		http.Error(res, "Internal Server Error!!!!!!!!", http.StatusInternalServerError)
+		return
 	}
 }
 

@@ -25,11 +25,13 @@ func HandleHome(res http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		/////500
 		http.Error(res, "Internal Server Error!!!!!!!!", http.StatusInternalServerError)
+		return
 	}
 	err = tmpl.Execute(res, ArtistsObj)
 	if err != nil {
 		/////500
 
 		http.Error(res, "Internal Server Error!!!!!!!!", http.StatusInternalServerError)
+		return
 	}
 }
