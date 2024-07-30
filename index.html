@@ -11,17 +11,12 @@
 
 </head>
 
-<body>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
-    </nav>
+<body> 
     <h1>You may also like</h1>
     <div class="container">
         {{range .}}
         <div class="card">
-            <a href="/artists/{{.ID}}">
+            <a href="/artists?q={{.ID}}">
                 <div class="item">
                     <img class="name" src="{{.Img}}" />
                     <h3 class="name">{{.Name}}</h3>

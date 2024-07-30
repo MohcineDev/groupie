@@ -1,16 +1,4 @@
-nav {
-    background: var(--purple);
-    padding: 15px;
-    display: flex;
-    justify-content: space-around;
-    box-shadow: 0 0 5px #222;
-}
-
-a {
-    text-decoration: none;
-    color: #fff;
-}
-
+ 
 h1 {
     text-align: center;
     color: #180161;
