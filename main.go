@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 
 	"groupie/handlers"
 )
@@ -15,9 +16,16 @@ func main() {
 	http.HandleFunc("/", handlers.HandleHome)
 	http.HandleFunc("/artists/", handlers.GetArtist)
 	handlers.GetArtistsData()
-	const PORT = "8000"
+
+	PORT := os.Getenv("PORT")
+
+	if PORT == "" {
+		PORT = "8000"
+
+	}
+
 	fmt.Printf("running on %v...", PORT)
-	http.ListenAndServe("localhost:"+PORT, nil)
+	http.ListenAndServe("0.0.0.0:"+PORT, nil)
 
 	///Template
 }
