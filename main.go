@@ -1,6 +1,7 @@
 package main
 
 import (
+	"cmp"
 	"fmt"
 	"net/http"
 	"os"
@@ -16,15 +17,15 @@ func main() {
 	http.HandleFunc("/", handlers.HandleHome)
 	http.HandleFunc("/artists/", handlers.GetArtist)
 
-	PORT := os.Getenv("PORT")
+	// PORT := os.Getenv("PORT")
+	PORT := cmp.Or(os.Getenv("PORT"), "3000")
+	// if PORT == "" {
+	// 	PORT = "8000"
 
-	if PORT == "" {
-		PORT = "8000"
-
-	}
+	// }
 
 	fmt.Printf("running on %v...", PORT)
-	http.ListenAndServe("0.0.0.0:"+PORT, nil)
+	http.ListenAndServe(":"+PORT, nil)
 
 	///Template
 }
