@@ -14,7 +14,9 @@ body {
     margin: 0;
 }
 
-
+a{
+    text-decoration: none;
+}
 footer {
     text-align: center;
     color: gray;
