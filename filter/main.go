@@ -25,7 +25,6 @@ func main() {
 func checkFile(res http.ResponseWriter, req *http.Request) {
 	// cssFile := http.Handle("/styles/", http.StripPrefix("/styles", http.FileServer(http.Dir("./styles"))))
 	cssFile := http.StripPrefix("/styles", http.FileServer(http.Dir("./styles")))
- 
 
 	_, err := os.ReadFile("./" + req.URL.Path)
 	if err != nil {
