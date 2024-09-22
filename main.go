@@ -1,6 +1,7 @@
 package main
 
 import (
+	"cmp"
 	"fmt"
 	"net/http"
 	"os"
@@ -15,9 +16,10 @@ func main() {
 
 	////serve style
 
-	http.HandleFunc("/styles/", checkFile)   
+	http.HandleFunc("/styles/", checkFile)
 	// run server
-	const PORT = "8000"
+	// const PORT = "8000"
+	PORT := cmp.Or(os.Getenv("PORT"), "3000")
 	fmt.Printf("running on %v...", PORT)
 	http.ListenAndServe("localhost:"+PORT, nil)
 }
@@ -25,7 +27,6 @@ func main() {
 func checkFile(res http.ResponseWriter, req *http.Request) {
 	// cssFile := http.Handle("/styles/", http.StripPrefix("/styles", http.FileServer(http.Dir("./styles"))))
 	cssFile := http.StripPrefix("/styles", http.FileServer(http.Dir("./styles")))
- 
 
 	_, err := os.ReadFile("./" + req.URL.Path)
 	if err != nil {
