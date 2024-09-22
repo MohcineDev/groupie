@@ -1,0 +1,114 @@
+body {
+    /* display: flex;
+    align-items: center; */
+    justify-content: center;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--blue);
+    --sahdow:0 0 5px var(--purple-shadow);
+}
+
+.container {
+    max-width: 400px;
+    margin: 4rem auto;
+    background: #eee;
+    padding: 1rem;
+    border-radius: 2px;
+    box-shadow: var(--sahdow);
+    text-transform: capitalize;
+    display: flex;
+    flex-direction: column;
+    outline: 2px solid #222529;
+    border: 8px solid #fff;
+    outline-offset: 8px;
+    max-height: 80vh;
+    overflow: scroll;
+}
+
+p {
+    margin: 10px 0;
+}
+
+#name {
+    font-weight: 800;
+    text-align: center;
+    font-size: 25px;
+}
+
+p.members {
+    margin-bottom: 0;
+}
+
+div.tags {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    font-size: 14px;
+    color: #323232;
+}
+
+img {
+    align-self: center;
+    border-radius: 18px;
+    outline: 2px solid #000;
+    border: 4px solid #eee;
+    box-shadow:  var(--sahdow);
+}
+
+div.tags span {
+    background: #fff;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: var(--sahdow);
+}
+
+.relation {
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 14px;
+    color: #323232;
+    gap: 1rem;
+}
+
+.relation div {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow:  var(--sahdow);
+
+}
+
+.relation div h3 {
+    margin: 5px 0;
+    color: var(--blue);
+}
+.relation div span{
+    display: block;
+
+    margin: 10px 0;
+}
+
+.back {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.back:hover {
+    transform: translateX(-6px)
+}
+
+@media only screen and (max-width: 600px) {
+
+    .container {
+        max-width: 300px;
+    }
+}

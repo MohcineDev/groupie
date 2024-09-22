@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/details.css" type="text/css" />
+
+</head>
+
+<body>
+
+    <div class="container">
+        <img src="{{.Old.Img}}" alt="">
+        <p id="name"> {{.Old.Name}}</p>
+        <p class="members">members :</p>
+        <div class="tags">
+            {{range .Old.Members}} <span> {{.}} </span>{{end}}
+        </div>
+        <p>Creation Date : <span>{{.Old.CreationDate}} </span></p>
+        <p>First Album : <span>{{.Old.FirstAlbum}} </span></p>
+        <p>Locations :
+        <div class="tags">
+            {{range .Loc.LocationsD}} <span> {{.}} </span>{{end}}
+        </div>
+        <p>Dates :
+
+        <div class="tags">
+            {{range .Date.DatesD}} <span> {{.}} </span>{{end}}
+        </div>
+        <p>dates Locations :
+
+        <div class="relation">
+            {{range $index, $elem:= .Relation.RelationD }}
+            <div>
+                <h3>{{$index}}</h3>
+
+                {{range $elem}}
+                <span>{{.}}</span>
+                {{end}}
+            </div>
+            {{end}}
+        </div>
+
+    </div>
+    <button class="back"><a href="/">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#180161"
+            class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+    </a>
+    </button>
+
+    <footer>
+        <p>groupie-tracker &copy;
+            <script>document.write(new Date().getFullYear())</script>
+        </p>
+    </footer>
+ 
+</body>
+
+</html>
