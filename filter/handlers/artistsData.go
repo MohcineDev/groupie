@@ -76,6 +76,5 @@ func GetArtistsLocations() {
 				FilteredLocations = append(FilteredLocations, k)
 			}
 		}
-	}
-	fmt.Println("res : ", allLocations)
+	} 
 }

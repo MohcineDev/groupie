@@ -55,9 +55,7 @@
  }
 
  .filter {
-
      max-width: calc((330*4px) - (16*4px));
-
      margin: auto;
  }
 
@@ -121,6 +119,7 @@
 
  input[type=checkbox] {
      cursor: pointer;
+     margin: 0;
  }
 
  .filter button {
