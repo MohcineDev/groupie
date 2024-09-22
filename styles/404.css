@@ -1,0 +1,36 @@
+
+body { 
+    color: #eee;
+    background: #f6f6fd;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 5rem 0 0 5rem;
+    transition: transform 0.3s;
+}
+
+button:hover {
+    transform: translateX(-6px)
+}
+
+div {
+    background-image: url("undraw_page_not_found_re_e9o6.svg");
+    display: flex;
+    margin: auto;
+}
+
+div>svg {
+    width: 95%;
+    margin: auto;
+}

@@ -35,7 +35,7 @@ var (
 func GetArtist(res http.ResponseWriter, req *http.Request) {
 	// elem := strings.Split(string(req.URL.Path), "/")
 	id, _ := strconv.Atoi(req.URL.Query().Get("q"))
-	fmt.Println("id : ", id)
+
 	if req.Method != http.MethodGet {
 		http.Error(res, "methode not Allowed!!!!!!!!", http.StatusMethodNotAllowed)
 		return
@@ -44,29 +44,37 @@ func GetArtist(res http.ResponseWriter, req *http.Request) {
 	// check id
 	if id > len(ArtistsObj) || id < 1 {
 
-		http.NotFound(res, req)
-
+		//	http.NotFound(res, req)
+		ParseAndExecute("templates/404.html", res)
 		return
 	}
 
-	file := "artist.html"
+	file := "./templates/artist.html"
 	tmpl, err := template.ParseFiles(file)
 	if err != nil {
-		/////500
-
 		http.Error(res, "Internal Server Error!!!!!!!!", http.StatusInternalServerError)
+		return
 	}
+	// recreate a map evry time to avoid errors
 
 	Relation.RelationD = make(map[string][]string)
 	er := getArtistData(id, "https://groupietrackers.herokuapp.com/api/locations/", "locations")
-	er = getArtistData(id, "https://groupietrackers.herokuapp.com/api/dates/", "dates")
-	er = getArtistData(id, "https://groupietrackers.herokuapp.com/api/relation/", "relation")
-
 	if er != nil {
-		/////500
 		http.Error(res, "Internal Server Error!!!!!!!!", http.StatusInternalServerError)
 		return
 	}
+	er = getArtistData(id, "https://groupietrackers.herokuapp.com/api/dates/", "dates")
+	if er != nil {
+		http.Error(res, "Internal Server Error!!!!!!!!", http.StatusInternalServerError)
+		return
+	}
+	er = getArtistData(id, "https://groupietrackers.herokuapp.com/api/relation/", "relation")
+
+	if er != nil {
+		http.Error(res, "Internal Server Error!!!!!!!!", http.StatusInternalServerError)
+		return
+	}
+	// all result
 	result := Data{
 		Old:      ArtistsObj[id-1],
 		Loc:      newlocation,
@@ -75,11 +83,12 @@ func GetArtist(res http.ResponseWriter, req *http.Request) {
 	}
 	err = tmpl.Execute(res, result)
 	if err != nil {
-		/////500
 		http.Error(res, "Internal Server Error!!!!!!!!", http.StatusInternalServerError)
 		return
 	}
 }
+
+// Get Artist Data (location & dates & relation )
 
 func getArtistData(id int, url string, info string) error {
 	DatesURL := fmt.Sprint(url, id)

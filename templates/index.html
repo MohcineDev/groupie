@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>groupie-tracker</title>
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+
+    <link rel="stylesheet" href="/styles/style.css" type="text/css" />
+
+</head>
+
+<body>
+    <h1>You may also like</h1>
+
+    <div class="filter">
+        <h2>filter</h2>
+        <div>
+            <div>
+                <div class="field">
+                    <div id="creation_date">
+                        <h3>Creation Date : </h3>
+                        <div>
+                            <label for="">From</label>
+                            <input type="date" min="1970" max="2024">
+                        </div>
+                        <div>
+                            <label for="">To</label>
+                            <input type="date" min="1970" max="2024">
+                        </div>
+                    </div>
+
+
+                    <div class="first_album">
+                        <h3>First Album : 1970 - 2024</h3>
+                        <div>
+                            <div class="my_range">
+                                <span>From</span>
+                                <input type="range" min="1970" max="2024">
+                                
+                            </div>
+                            <div class="my_range"> 
+                                <input type="range" min="1970" max="2024">
+                                <span>To</span>
+
+                            </div>
+                        </div>
+                        <span class="creation_date">..</span>
+                    </div>
+
+                    <!-- members -->
+                    <div>
+                        <h3>number of members</h3>
+                        <div class="members">
+                            <div>
+                                <label for="">1</label>
+                                <input type="checkbox" value="1">
+                            </div>
+                            <div>
+                                <label for="">2</label>
+                                <input type="checkbox" value="2">
+                            </div>
+
+                            <div>
+                                <label for="">3</label>
+                                <input type="checkbox" value="3">
+                            </div>
+                            <div>
+                                <label for="">4</label>
+                                <input type="checkbox" value="4">
+                            </div>
+                            <div>
+                                <label for="">5</label>
+                                <input type="checkbox" value="5">
+                            </div>
+                            <div>
+                                <label for="">6</label>
+                                <input type="checkbox" value="6">
+                            </div>
+
+                            <div>
+                                <label for="">7</label>
+                                <input type="checkbox" value="7">
+                            </div>
+                            <div>
+                                <label for="">8</label>
+                                <input type="checkbox" value="8">
+                            </div>
+                            <div>
+                                <label for="">9</label>
+                                <input type="checkbox" value="9">
+                            </div>
+                            <div>
+                                <label for="">10</label>
+                                <input type="checkbox" value="10">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- locations of concerts -->
+                    <div>
+                        <h3>locations of concerts</h3>
+                        <select name="" id="">
+                            <option value="london-uk">london-uk</option>
+                            <option value="lyon-france">lyon-france</option>
+                            <option value="lausanne-switzerland">lausanne-switzerland</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        {{range .}}
+        <div class="card">
+            <a href="/artists?q={{.ID}}">
+                <div class="item">
+                    <img class="name" src="{{.Img}}" />
+                    <h3 class="name">{{.Name}}</h3>
+                    <?xml version="1.0" standalone="no"?>
+                    <?xml version="1.0" standalone="no"?>
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#eee" fill-opacity="1" d="M0,288L57.6,288L115.2,128L172.8,320L230.4,256L288,128L345.6,256L403.2,64L460.8,96L518.4,288L576,64L633.6,256L691.2,192L748.8,192L806.4,128L864,288L921.6,288L979.2,64L1036.8,288L1094.4,192L1152,96L1209.6,192L1267.2,128L1324.8,32L1382.4,288L1440,128L1440,0L1382.4,0L1324.8,0L1267.2,0L1209.6,0L1152,0L1094.4,0L1036.8,0L979.2,0L921.6,0L864,0L806.4,0L748.8,0L691.2,0L633.6,0L576,0L518.4,0L460.8,0L403.2,0L345.6,0L288,0L230.4,0L172.8,0L115.2,0L57.6,0L0,0Z"></path></svg> -->
+
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                        <path fill="#eee" fill-opacity="1"
+                            d="M0,192L9.6,181.3C19.2,171,38,149,58,128C76.8,107,96,85,115,106.7C134.4,128,154,192,173,186.7C192,181,211,107,230,74.7C249.6,43,269,53,288,48C307.2,43,326,21,346,32C364.8,43,384,85,403,117.3C422.4,149,442,171,461,170.7C480,171,499,149,518,138.7C537.6,128,557,128,576,133.3C595.2,139,614,149,634,133.3C652.8,117,672,75,691,58.7C710.4,43,730,53,749,69.3C768,85,787,107,806,133.3C825.6,160,845,192,864,181.3C883.2,171,902,117,922,112C940.8,107,960,149,979,176C998.4,203,1018,213,1037,186.7C1056,160,1075,96,1094,64C1113.6,32,1133,32,1152,69.3C1171.2,107,1190,181,1210,218.7C1228.8,256,1248,256,1267,240C1286.4,224,1306,192,1325,197.3C1344,203,1363,245,1382,266.7C1401.6,288,1421,288,1430,288L1440,288L1440,320L1430.4,320C1420.8,320,1402,320,1382,320C1363.2,320,1344,320,1325,320C1305.6,320,1286,320,1267,320C1248,320,1229,320,1210,320C1190.4,320,1171,320,1152,320C1132.8,320,1114,320,1094,320C1075.2,320,1056,320,1037,320C1017.6,320,998,320,979,320C960,320,941,320,922,320C902.4,320,883,320,864,320C844.8,320,826,320,806,320C787.2,320,768,320,749,320C729.6,320,710,320,691,320C672,320,653,320,634,320C614.4,320,595,320,576,320C556.8,320,538,320,518,320C499.2,320,480,320,461,320C441.6,320,422,320,403,320C384,320,365,320,346,320C326.4,320,307,320,288,320C268.8,320,250,320,230,320C211.2,320,192,320,173,320C153.6,320,134,320,115,320C96,320,77,320,58,320C38.4,320,19,320,10,320L0,320Z">
+                        </path>
+                    </svg>
+                </div>
+            </a>
+        </div>
+        {{end}}
+    </div>
+    <footer>
+        <p>groupie-tracker &copy;
+            <script>document.write(new Date().getFullYear())</script>
+        </p>
+    </footer>
+
+    <script>
+        const creationDate = document.querySelector('.creation_date')
+        document.querySelector('[type=range]').addEventListener('change', e => {
+            creationDate.innerText = e.target.value
+        })
+    </script>
+</body>
+
+</html>
