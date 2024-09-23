@@ -21,7 +21,7 @@ func main() {
 	// const PORT = "8000"
 	PORT := cmp.Or(os.Getenv("PORT"), "3000")
 	fmt.Printf("running on %v...", PORT)
-	http.ListenAndServe("localhost:"+PORT, nil)
+	http.ListenAndServe(":"+PORT, nil)
 }
 
 func checkFile(res http.ResponseWriter, req *http.Request) {
