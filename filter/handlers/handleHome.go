@@ -28,7 +28,7 @@ func HandleHome(res http.ResponseWriter, req *http.Request) {
 		FilteredLocations []string
 	}
 
-	data := Data{ArtistsObj, FilteredLocations}
+	data := &Data{ArtistsObj, FilteredLocations}
 	tmpl, err := template.ParseFiles(file)
 
 	if err != nil {
