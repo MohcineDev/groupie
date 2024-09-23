@@ -18,7 +18,7 @@ type dates struct {
 type relation struct {
 	RelationD map[string][]string `json:"datesLocations"`
 }
-
++
 type Data struct {
 	Old      Res
 	Loc      locations

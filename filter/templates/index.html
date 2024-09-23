@@ -14,21 +14,20 @@
 <body>
     <h1>You may also like</h1>
 
-    <section class="filter">
+    <form class="filter" action="" method="get">
         <h2>filter</h2>
         <div class="field">
             <div id="creation_date">
                 <h3>Creation Date : </h3>
                 <div>
                     <label for="">From : </label>
-                    <input type="date" value="1980" min="1970" max="2024">
+                    <input type="date" min="1970-01-01" max="2023-01-01" value="1980" min="1970" max="2024">
                 </div>
                 <div>
                     <label for="">To : </label>
-                    <input type="date" value="2024" min="1970" max="2024">
+                    <input type="date" max="2024-01-01" value="2024">
                 </div>
             </div>
-
 
             <div class="first_album">
                 <h3>First Album : 1970 - 2024</h3>
@@ -99,7 +98,7 @@
             <div>
                 <h3>locations of concerts</h3>
                 <select name="" id="">
-                    <option value="london-uk">london-uk</option>
+                    <option value="select">select</option>
                     {{range .FilteredLocations}}
 
                     <option value="{{.}}">{{.}}</option>
@@ -107,8 +106,8 @@
                 </select>
             </div>
         </div>
-        <button>Search</button>
-    </section>
+        <button type="submit">Search</button>
+    </form>
     <div class="container">
         {{range .ArtistsObj}}
         <div class="card">
