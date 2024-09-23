@@ -11,36 +11,39 @@
 
 </head>
 
-<body>
-    <h1>You may also like</h1>
+<body> 
+    <h1><a href="/">You may also like</a> </h1>
 
-    <form class="filter" action="" method="get">
+    <form class="filter" action="/search" method="get">
         <h2>filter</h2>
         <div class="field">
-            <div id="creation_date">
+            <div class="creation_date">
                 <h3>Creation Date : </h3>
                 <div>
-                    <label for="">From : </label>
-                    <input type="date" min="1970-01-01" max="2023-01-01" value="1980" min="1970" max="2024">
-                </div>
-                <div>
-                    <label for="">To : </label>
-                    <input type="date" max="2024-01-01" value="2024">
-                </div>
-            </div>
+                    <div class="date_range my_range">
+                        <label>From : </label>
+                        <input type="range" id="dateFrom" min="1970" value="1970" max="2024" name="fromDate">
 
+                    </div>
+                    <div class="date_range my_range">
+                        <label>To : </label>
+                        <input type="range" id="dateTo" min="1970" value="2024" max="2024" name="toDate">
+                    </div>
+                </div>
+                <span id="creation_date">..</span>
+
+            </div>
             <div class="first_album">
                 <h3>First Album : 1970 - 2024</h3>
                 <div>
                     <div class="my_range">
                         <label>From : </label>
-                        <input type="range" id="albumFrom" min="1970" max="2024">
+                        <input type="range" id="albumFrom" min="1970" value="1970" max="2024" name="fromAlbum">
 
                     </div>
                     <div class="my_range">
                         <label>To : </label>
-                        <input type="range" id="albumTo" min="1970" max="2024">
-
+                        <input type="range" id="albumTo" min="1970" max="2024" value="2024" name="toAlbum">
                     </div>
                 </div>
                 <span id="first_album">..</span>
@@ -51,54 +54,43 @@
                 <h3>number of members</h3>
                 <div class="members">
                     <div>
-                        <label for="">1</label>
-                        <input type="checkbox" value="1">
+                        <label for="member_1">1</label>
+                        <input type="checkbox" value="1" id="member_1" name="member_1">
                     </div>
                     <div>
-                        <label for="">2</label>
-                        <input type="checkbox" value="2">
+                        <label for="member_2">2</label>
+                        <input type="checkbox" value="2" id="member_2" name="member_2">
                     </div>
 
                     <div>
-                        <label for="">3</label>
-                        <input type="checkbox" value="3">
+                        <label for="member_3">3</label>
+                        <input type="checkbox" value="3" id="member_3" name="member_3">
                     </div>
                     <div>
-                        <label for="">4</label>
-                        <input type="checkbox" value="4">
+                        <label for="member_4">4</label>
+                        <input type="checkbox" value="4" id="member_4" name="member_4">
                     </div>
                     <div>
-                        <label for="">5</label>
-                        <input type="checkbox" value="5">
+                        <label for="member_5">5</label>
+                        <input type="checkbox" value="5" id="member_5" name="member_5">
                     </div>
                     <div>
-                        <label for="">6</label>
-                        <input type="checkbox" value="6">
+                        <label for="member_6">6</label>
+                        <input type="checkbox" value="6" id="member_6" name="member_6">
                     </div>
 
                     <div>
-                        <label for="">7</label>
-                        <input type="checkbox" value="7">
+                        <label for="member_7">7</label>
+                        <input type="checkbox" value="7" id="member_7" name="member_7">
                     </div>
-                    <div>
-                        <label for="">8</label>
-                        <input type="checkbox" value="8">
-                    </div>
-                    <div>
-                        <label for="">9</label>
-                        <input type="checkbox" value="9">
-                    </div>
-                    <div>
-                        <label for="">10</label>
-                        <input type="checkbox" value="10">
-                    </div>
+
                 </div>
             </div>
             <!-- locations of concerts -->
             <div>
                 <h3>locations of concerts</h3>
-                <select name="" id="">
-                    <option value="select">select</option>
+                <select name="location" id="">
+                    <option value="all">select</option>
                     {{range .FilteredLocations}}
 
                     <option value="{{.}}">{{.}}</option>
@@ -136,10 +128,35 @@
     </footer>
 
     <script>
+        const creationDate = document.querySelector('#creation_date')
+        const dateFrom = document.querySelector('#dateFrom')
+        const dateTo = document.querySelector('#dateTo')
+
         const firstAlbum = document.querySelector('#first_album')
         const albumFrom = document.querySelector('#albumFrom')
         const albumTo = document.querySelector('#albumTo')
 
+
+
+        ///Creation Date
+        dateFrom.addEventListener('change', e => {
+            if (e.target.value === dateTo.max) {
+                e.target.value -= 1
+            }
+
+            dateTo.min = parseInt(e.target.value) + 1
+
+            creationDate.innerText = e.target.value + " - " + dateTo.value
+        })
+        creationDate.innerText = dateFrom.value + " - " + dateTo.value
+
+        dateTo.addEventListener('change', e => {
+            dateFrom.max = parseInt(e.target.value) - 1
+            creationDate.innerText = dateFrom.value + " - " + e.target.value
+        })
+
+
+        //album
         albumFrom.addEventListener('change', e => {
             if (e.target.value === albumTo.max) {
                 e.target.value -= 1
@@ -150,11 +167,16 @@
 
             firstAlbum.innerText = e.target.value + " - " + albumTo.value
         })
+        firstAlbum.innerText = albumFrom.value + " - " + albumTo.value
 
         albumTo.addEventListener('change', e => {
             albumFrom.max = parseInt(e.target.value) - 1
             firstAlbum.innerText = albumFrom.value + " - " + e.target.value
         })
+
+
+
+
     </script>
 </body>
 

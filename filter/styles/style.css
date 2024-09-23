@@ -82,21 +82,20 @@
      text-transform: capitalize;
  }
 
- #creation_date div {
-     display: inline;
- }
-
+ 
  label {
      color: #444;
      font-size: 15px;
+     cursor: pointer;
+     margin-left: 5px;
  }
 
- .first_album>div {
+ .first_album>div , .creation_date>div{
      display: flex;
      justify-content: space-between;
  }
 
- #first_album {
+ #first_album, #creation_date {
      display: block;
      margin-top: 10px;
      text-align: center;

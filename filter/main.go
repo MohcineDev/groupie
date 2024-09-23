@@ -12,10 +12,11 @@ func main() {
 	///server paths
 	http.HandleFunc("/", handlers.HandleHome)
 	http.HandleFunc("/artists", handlers.GetArtist)
+	http.HandleFunc("/search", handlers.Search)
 
 	////serve style
-
 	http.HandleFunc("/styles/", checkFile)   
+	
 	// run server
 	const PORT = "8000"
 	fmt.Printf("running on %v...", PORT)
