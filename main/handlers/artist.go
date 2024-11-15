@@ -43,7 +43,8 @@ func GetArtist(res http.ResponseWriter, req *http.Request) {
 
 	// check id
 	if id > len(ArtistsObj) || id < 1 {
- 
+
+		//	http.NotFound(res, req)
 		ParseAndExecute("templates/404.html", res)
 		return
 	}
@@ -57,17 +58,17 @@ func GetArtist(res http.ResponseWriter, req *http.Request) {
 	// recreate a map evry time to avoid errors
 
 	Relation.RelationD = make(map[string][]string)
-	er := GetArtistData(id, "https://groupietrackers.herokuapp.com/api/locations/", "locations")
+	er := getArtistData(id, "https://groupietrackers.herokuapp.com/api/locations/", "locations")
 	if er != nil {
 		http.Error(res, "Internal Server Error!!!!!!!!", http.StatusInternalServerError)
 		return
 	}
-	er = GetArtistData(id, "https://groupietrackers.herokuapp.com/api/dates/", "dates")
+	er = getArtistData(id, "https://groupietrackers.herokuapp.com/api/dates/", "dates")
 	if er != nil {
 		http.Error(res, "Internal Server Error!!!!!!!!", http.StatusInternalServerError)
 		return
 	}
-	er = GetArtistData(id, "https://groupietrackers.herokuapp.com/api/relation/", "relation")
+	er = getArtistData(id, "https://groupietrackers.herokuapp.com/api/relation/", "relation")
 
 	if er != nil {
 		http.Error(res, "Internal Server Error!!!!!!!!", http.StatusInternalServerError)
@@ -82,14 +83,14 @@ func GetArtist(res http.ResponseWriter, req *http.Request) {
 	}
 	err = tmpl.Execute(res, result)
 	if err != nil {
-		http.Error(res, "Internal Serveidr Error!!!!!!!!", http.StatusInternalServerError)
+		http.Error(res, "Internal Server Error!!!!!!!!", http.StatusInternalServerError)
 		return
 	}
 }
 
 // Get Artist Data (location & dates & relation )
 
-func GetArtistData(id int, url string, info string) error {
+func getArtistData(id int, url string, info string) error {
 	DatesURL := fmt.Sprint(url, id)
 
 	DatesData, err := http.Get(DatesURL)

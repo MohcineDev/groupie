@@ -55,10 +55,12 @@
  }
 
  .filter {
-
      max-width: calc((330*4px) - (16*4px));
-
      margin: auto;
+ }
+
+ .filter h2 {
+     margin-left: 10px;
  }
 
  .field {
@@ -80,19 +82,25 @@
      text-transform: capitalize;
  }
 
- #creation_date div {
-     display: inline;
- }
-
- #creation_date label {
+ 
+ label {
      color: #444;
      font-size: 15px;
+     cursor: pointer;
+     margin-left: 5px;
  }
 
-.first_album>div{
-    display: flex;
-    justify-content: space-between;
-}
+ .first_album>div , .creation_date>div{
+     display: flex;
+     justify-content: space-between;
+ }
+
+ #first_album, #creation_date {
+     display: block;
+     margin-top: 10px;
+     text-align: center;
+ }
+
  .my_range {
      display: flex;
      align-items: center;
@@ -103,12 +111,34 @@
      margin: 0 10px;
      cursor: pointer;
  }
-.members>div{
-    display: inline;
-}
+
+ .members>div {
+     display: inline;
+ }
 
  input[type=checkbox] {
      cursor: pointer;
+     margin-left: 0;
+ }
+
+ .filter button {
+     width: calc(100% - 20px);
+     background-color: #e6e1e1;
+     color: var(--purple);
+     border: none;
+     padding: 1rem;
+     cursor: pointer;
+     box-shadow: 0 0 5px var(--purple-shadow);
+     border-radius: 10px;
+     font-size: 23px;
+     font-weight: 800;
+     transition: transform 0.3s;
+     margin: 0 10px;
+
+ }
+
+ .filter button:hover {
+     transform: translateY(5px);
  }
 
  /* Large devices (laptops/desktops, 992px and up) */
@@ -122,10 +152,15 @@
 
  @media only screen and (max-width: 768px) {
 
+     .field {
+         grid-template-columns: 1fr;
+     }
+
      .container {
          grid-template-columns: repeat(3, 30%);
          gap: 10px;
      }
+
  }
 
  @media only screen and (max-width: 600px) {
@@ -166,5 +201,11 @@
      .name {
          font-size: 14px;
          margin: 5px;
+     }
+
+
+     /* filter */
+     [type=range] {
+         width: 100px;
      }
  }

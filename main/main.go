@@ -1,6 +1,7 @@
 package main
 
 import (
+	"cmp"
 	"fmt"
 	"net/http"
 	"os"
@@ -12,15 +13,15 @@ func main() {
 	///server paths
 	http.HandleFunc("/", handlers.HandleHome)
 	http.HandleFunc("/artists", handlers.GetArtist)
-	http.HandleFunc("/search", handlers.Search)
 
 	////serve style
-	http.HandleFunc("/styles/", checkFile)   
-	
+
+	http.HandleFunc("/styles/", checkFile)
 	// run server
-	const PORT = "8000"
+	// const PORT = "8000"
+	PORT := cmp.Or(os.Getenv("PORT"), "3000")
 	fmt.Printf("running on %v...", PORT)
-	http.ListenAndServe("localhost:"+PORT, nil)
+	http.ListenAndServe(":"+PORT, nil)
 }
 
 func checkFile(res http.ResponseWriter, req *http.Request) {

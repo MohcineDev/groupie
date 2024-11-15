@@ -21,13 +21,21 @@ func HandleHome(res http.ResponseWriter, req *http.Request) {
 	}
 	////Get artist data
 	GetArtistsData()
+	GetArtistsLocations()
 
+	type Data struct {
+		ArtistsObj        []Res
+		FilteredLocations []string
+	}
+
+	data := &Data{ArtistsObj, FilteredLocations}
 	tmpl, err := template.ParseFiles(file)
+
 	if err != nil {
 		http.Error(res, "Internal Server Error!!!!!!!!", http.StatusInternalServerError)
 		return
 	}
-	err = tmpl.Execute(res, ArtistsObj)
+	err = tmpl.Execute(res, data)
 	if err != nil {
 		http.Error(res, "Internal Server Error!!!!!!!!", http.StatusInternalServerError)
 		return

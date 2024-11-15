@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 	"text/template"
@@ -66,15 +67,13 @@ func Search(res http.ResponseWriter, req *http.Request) {
 	if member_8 == 0 {
 		checkMembers(&r, 8)
 	}
-
+	fmt.Println("\n\n----------  ", ArtistsObj[0].Location)
 	// location := req.FormValue("location")
-ArtistsObj.Location = LocFilter
+	// ArtistsObj.Location = LocFilter
 	// for i := 0; i < len(r); i++ {
-		
-		
+
 	// }
 	// fmt.Println(r)
-
 
 	tmpl, err := template.ParseFiles("./templates/index.html")
 	if err != nil {
