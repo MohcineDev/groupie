@@ -11,7 +11,7 @@
 
 </head>
 
-<body> 
+<body>
     <h1><a href="/">You may also like</a> </h1>
 
     <form class="filter" action="/search" method="get">
@@ -22,28 +22,28 @@
                 <div>
                     <div class="date_range my_range">
                         <label>From : </label>
-                        <input type="range" id="dateFrom" min="1970" value="1970" max="2024" name="fromDate">
+                        <input type="range" id="dateFrom" min="1950" value="1950" max="2024" name="fromDate">
 
                     </div>
                     <div class="date_range my_range">
                         <label>To : </label>
-                        <input type="range" id="dateTo" min="1970" value="2024" max="2024" name="toDate">
+                        <input type="range" id="dateTo" min="1950" value="2024" max="2024" name="toDate">
                     </div>
                 </div>
                 <span id="creation_date">..</span>
 
             </div>
             <div class="first_album">
-                <h3>First Album : 1970 - 2024</h3>
+                <h3>First Album : </h3>
                 <div>
                     <div class="my_range">
                         <label>From : </label>
-                        <input type="range" id="albumFrom" min="1970" value="1970" max="2024" name="fromAlbum">
+                        <input type="range" id="albumFrom" min="1950" value="1950" max="2024" name="fromAlbum">
 
                     </div>
                     <div class="my_range">
                         <label>To : </label>
-                        <input type="range" id="albumTo" min="1970" max="2024" value="2024" name="toAlbum">
+                        <input type="range" id="albumTo" min="1950" max="2024" value="2024" name="toAlbum">
                     </div>
                 </div>
                 <span id="first_album">..</span>
@@ -104,6 +104,9 @@
         </div>
         <button type="submit">Search</button>
     </form>
+    {{ if eq (len .ArtistsObj) 0 }}
+    <div class="errormsg">Sorry. No matching results found</div>
+    {{ else }}
     <div class="container">
         {{range .ArtistsObj}}
         <div class="card">
@@ -124,7 +127,9 @@
             </a>
         </div>
         {{end}}
+        {{end}}
     </div>
+
     <footer>
         <p>groupie-tracker &copy;
             <script>document.write(new Date().getFullYear())</script>
