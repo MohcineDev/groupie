@@ -1,13 +1,19 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 	"text/template"
 )
 
 func Search(res http.ResponseWriter, req *http.Request) {
+	GetArtistsData()
+	GetArtistsLocations()
+
+	for i := 0; i < len(ArtistsObj); i++ {
+		ArtistsObj[i].Location.Locations = LocFilter.Index[i].Locations
+	}
+
 	fromDate, _ := strconv.Atoi(req.FormValue("fromDate"))
 	toDate, _ := strconv.Atoi(req.FormValue("toDate"))
 
@@ -18,7 +24,6 @@ func Search(res http.ResponseWriter, req *http.Request) {
 
 	copy(r, ArtistsObj)
 
-	// for i, val := range r {
 	for i := 0; i < len(r); i++ {
 		first, _ := strconv.Atoi(r[i].FirstAlbum[len(r[i].FirstAlbum)-4:])
 		if (r[i].CreationDate < fromDate || r[i].CreationDate > toDate) || (first < fromAlbum || first > toAlbum) {
@@ -36,44 +41,56 @@ func Search(res http.ResponseWriter, req *http.Request) {
 	member_7, _ := strconv.Atoi(req.FormValue("member_7"))
 	member_8, _ := strconv.Atoi(req.FormValue("member_8"))
 
-	if member_1 == 0 {
-		checkMembers(&r, 1)
+	if member_1 != 0 || member_2 != 0 || member_3 != 0 || member_4 != 0 || member_5 != 0 || member_6 != 0 || member_7 != 0 || member_8 != 0 {
+		if member_1 == 0 {
+			checkMembers(&r, 1)
+		}
+
+		if member_2 == 0 {
+			checkMembers(&r, 2)
+		}
+
+		if member_3 == 0 {
+			checkMembers(&r, 3)
+		}
+
+		if member_4 == 0 {
+			checkMembers(&r, 4)
+		}
+
+		if member_5 == 0 {
+			checkMembers(&r, 5)
+		}
+
+		if member_6 == 0 {
+			checkMembers(&r, 6)
+		}
+
+		if member_7 == 0 {
+			checkMembers(&r, 7)
+		}
+
+		if member_8 == 0 {
+			checkMembers(&r, 8)
+		}
 	}
 
-	if member_2 == 0 {
-		checkMembers(&r, 2)
+	location := req.FormValue("location")
+	if location != "all" {
+		for i := 0; i < len(r); i++ {
+			tf := false
+			for j := 0; j < len(r[i].Location.Locations); j++ {
+				if location == r[i].Location.Locations[j] {
+					tf = true
+					break
+				}
+			}
+			if !tf {
+				r = append(r[:i], r[i+1:]...)
+				i--
+			}
+		}
 	}
-
-	if member_3 == 0 {
-		checkMembers(&r, 3)
-	}
-
-	if member_4 == 0 {
-		checkMembers(&r, 4)
-	}
-
-	if member_5 == 0 {
-		checkMembers(&r, 5)
-	}
-
-	if member_6 == 0 {
-		checkMembers(&r, 6)
-	}
-
-	if member_7 == 0 {
-		checkMembers(&r, 7)
-	}
-
-	if member_8 == 0 {
-		checkMembers(&r, 8)
-	}
-	fmt.Println("\n\n----------  ", ArtistsObj[0].Location)
-	// location := req.FormValue("location")
-	// ArtistsObj.Location = LocFilter
-	// for i := 0; i < len(r); i++ {
-
-	// }
-	// fmt.Println(r)
 
 	tmpl, err := template.ParseFiles("./templates/index.html")
 	if err != nil {
