@@ -7,25 +7,26 @@
     --red: #EB3678;
     --orange: #FB773C;
     --radius: 50px;
+    --light:#eee;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    background-color: #fefefe;
-    background-color: #eee;
+    background-color: var(--light);
 }
 
 body.dark {
     background-color: #101020;
-    color: #fff;
+    color: var(--light);
 }
 
 a {
     text-decoration: none;
+    color: var(--purple);
 }
 body.dark a{
-    color: #fff;
+    color: var(--light);
 }
 footer {
     text-align: center;

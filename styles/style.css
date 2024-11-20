@@ -83,7 +83,7 @@
  }
 
  .item:hover {
-     transform: translate(5px, 5px);
+     transform: translate(3px, 3px);
  }
 
  img {
@@ -94,8 +94,9 @@
  }
 
  .filter {
-     max-width: calc((330*4px) - (16*4px));
-     margin: auto;
+    max-width: calc((330*4px) - (16*4px));
+    margin: auto;
+     padding: 0 20px;
  }
 
  .filter h2 {
@@ -113,9 +114,11 @@
      border-radius: 10px;
      background: #e6e1e1;
      box-shadow: 0 0 5px var(--purple-shadow);
+     transition: transform 0.3s;
+
  }
 
- body.dark .field>div {
+ body.dark .field>div, .dark .filter button {
      background: #251c2c;
  }
 
@@ -126,7 +129,7 @@
      text-transform: capitalize;
  }
 
- body.dark .field h3 {
+ body.dark .field h3, .dark .filter button {
      color: var(--purple-shadow);
  }
 
@@ -186,12 +189,13 @@
      font-size: 23px;
      font-weight: 800;
      transition: transform 0.3s;
-     margin: 0 10px;
+     margin: 10px;
 
  }
 
- .filter button:hover {
-     transform: translateY(5px);
+
+ .filter button:hover, .field>div:hover {
+     transform: translate(3px, 3px);
  }
 
  /* Large devices (laptops/desktops, 992px and up) */
@@ -223,17 +227,43 @@
          --radius: 20px;
      }
 
+
+     .theme {
+         position: absolute;
+     }
+
+     .filter {
+         padding: 0 5px;
+
+     }
+
      h1 {
          font-size: 26px;
      }
 
-     svg {
+
+     .field>div {
+         padding: 5px;
+
+     }
+
+     .field h3 {
+         margin-top: 5px;
+         text-align: center;
+     }
+
+     .field>div div .my_range:nth-child(2) input[type=range] {
+
+         margin-right: 0;
+     }
+
+     #waves {
          display: none;
      }
 
      .container {
          grid-template-columns: repeat(2, 50%);
-         gap: 10px;
+         gap: 0;
      }
 
      .card {
@@ -258,6 +288,10 @@
 
 
      /* filter */
+     label {
+         font-size: 14px;
+     }
+
      [type=range] {
          width: 100px;
      }
