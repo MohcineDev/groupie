@@ -1,0 +1,171 @@
+.filter {
+    max-width: calc((330*4px) - (16*4px));
+    margin: auto;
+    padding: 0 20px;
+}
+
+.filter h2 {
+    margin-left: 10px;
+}
+
+.field {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.field>div {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    background: #e6e1e1;
+    box-shadow: 0 0 5px var(--purple-shadow);
+    transition: transform 0.3s;
+
+}
+
+body.dark .field>div, .dark .filter button {
+    background: #251c2c;
+}
+
+
+.field h3 {
+    color: var(--purple);
+    font-size: 17px;
+    text-transform: capitalize;
+}
+
+body.dark .field h3, .dark .filter button {
+    color: var(--purple-shadow);
+}
+
+label {
+    color: #444;
+    font-size: 15px;
+    cursor: pointer; 
+}
+
+.dark label {
+    color: #dadada;
+}
+
+.first_album>div,
+.creation_date>div {
+    display: flex;
+    justify-content: space-between;
+}
+
+#first_album,
+#creation_date {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.my_range {
+    display: flex;
+    align-items: center;
+}
+
+
+input[type=range] {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+/* .members>div {
+    display: inline;
+} */
+.members {
+    display: flex;
+}
+
+.members>div {
+    margin-right: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.members>div label {
+    position: absolute;
+    user-select: none;
+    pointer-events: none;
+    z-index: 10;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 2px solid var(--purple);
+    border-radius: 5px;
+    cursor: pointer;
+    transform: rotate(45deg);
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 13px;
+    height: 13px;
+    background-color: var(--purple);
+    border-radius: 5px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+input[type="checkbox"]:checked::before {
+    display: block;
+}
+  
+
+.filter button {
+    width: calc(100% - 20px);
+    background-color: #e6e1e1;
+    color: var(--purple);
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    box-shadow: 0 0 5px var(--purple-shadow);
+    border-radius: 10px;
+    font-size: 23px;
+    font-weight: 800;
+    transition: transform 0.3s;
+    margin: 10px;
+
+}
+
+
+.filter button:hover, .field>div:hover {
+    transform: translate(3px, 3px);
+}
+
+/* dark / light */
+
+body.dark .field h3, .dark .filter button {
+    color: var(--purple-shadow);
+}
+body.dark input[type="checkbox"] {
+    border-color: var(--purple-shadow);
+}
+
+body.dark input[type="checkbox"]::before {
+    background-color: var(--purple-shadow);
+}
+
+input[type="checkbox"]:checked ~ label{
+    color:  #fff;
+}
+@media only screen and (max-width: 768px) {
+
+    .field {
+        grid-template-columns: 1fr;
+    }
+
+
+
+}
