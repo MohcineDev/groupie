@@ -43,7 +43,7 @@ func GetArtist(res http.ResponseWriter, req *http.Request) {
 
 	// check id
 	if id > len(ArtistsObj) || id < 1 {
- 
+
 		ParseAndExecute("templates/404.html", res)
 		return
 	}
@@ -74,12 +74,17 @@ func GetArtist(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 	// all result
+	// /four cards have been removed
+	if id > 20 {
+		id -= 4
+	}
 	result := Data{
 		Old:      ArtistsObj[id-1],
 		Loc:      newlocation,
 		Date:     Dates,
 		Relation: Relation,
 	}
+
 	err = tmpl.Execute(res, result)
 	if err != nil {
 		http.Error(res, "Internal Serveidr Error!!!!!!!!", http.StatusInternalServerError)
@@ -103,11 +108,11 @@ func GetArtistData(id int, url string, info string) error {
 		return err
 	}
 	if info == "locations" {
-		return json.Unmarshal(content, &newlocation)
+		json.Unmarshal(content, &newlocation)
 	} else if info == "dates" {
-		return json.Unmarshal(content, &Dates)
+		json.Unmarshal(content, &Dates)
 	} else if info == "relation" {
-		return json.Unmarshal(content, &Relation)
+		json.Unmarshal(content, &Relation)
 	}
 	return nil
 }

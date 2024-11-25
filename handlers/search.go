@@ -20,14 +20,13 @@ func Search(res http.ResponseWriter, req *http.Request) {
 	fromAlbum, _ := strconv.Atoi(req.FormValue("fromAlbum"))
 	toAlbum, _ := strconv.Atoi(req.FormValue("toAlbum"))
 
-	r := make([]Res, len(ArtistsObj))
+	filteredRes := make([]Res, len(ArtistsObj))
+	copy(filteredRes, ArtistsObj)
 
-	copy(r, ArtistsObj)
-
-	for i := 0; i < len(r); i++ {
-		first, _ := strconv.Atoi(r[i].FirstAlbum[len(r[i].FirstAlbum)-4:])
-		if (r[i].CreationDate < fromDate || r[i].CreationDate > toDate) || (first < fromAlbum || first > toAlbum) {
-			r = append(r[:i], r[i+1:]...)
+	for i := 0; i < len(filteredRes); i++ {
+		first, _ := strconv.Atoi(filteredRes[i].FirstAlbum[len(filteredRes[i].FirstAlbum)-4:])
+		if (filteredRes[i].CreationDate < fromDate || filteredRes[i].CreationDate > toDate) || (first < fromAlbum || first > toAlbum) {
+			filteredRes = append(filteredRes[:i], filteredRes[i+1:]...)
 			i--
 		}
 	}
@@ -43,50 +42,50 @@ func Search(res http.ResponseWriter, req *http.Request) {
 
 	if member_1 != 0 || member_2 != 0 || member_3 != 0 || member_4 != 0 || member_5 != 0 || member_6 != 0 || member_7 != 0 || member_8 != 0 {
 		if member_1 == 0 {
-			checkMembers(&r, 1)
+			checkMembers(&filteredRes, 1)
 		}
 
 		if member_2 == 0 {
-			checkMembers(&r, 2)
+			checkMembers(&filteredRes, 2)
 		}
 
 		if member_3 == 0 {
-			checkMembers(&r, 3)
+			checkMembers(&filteredRes, 3)
 		}
 
 		if member_4 == 0 {
-			checkMembers(&r, 4)
+			checkMembers(&filteredRes, 4)
 		}
 
 		if member_5 == 0 {
-			checkMembers(&r, 5)
+			checkMembers(&filteredRes, 5)
 		}
 
 		if member_6 == 0 {
-			checkMembers(&r, 6)
+			checkMembers(&filteredRes, 6)
 		}
 
 		if member_7 == 0 {
-			checkMembers(&r, 7)
+			checkMembers(&filteredRes, 7)
 		}
 
 		if member_8 == 0 {
-			checkMembers(&r, 8)
+			checkMembers(&filteredRes, 8)
 		}
 	}
 
 	location := req.FormValue("location")
 	if location != "all" {
-		for i := 0; i < len(r); i++ {
+		for i := 0; i < len(filteredRes); i++ {
 			tf := false
-			for j := 0; j < len(r[i].Location.Locations); j++ {
-				if location == r[i].Location.Locations[j] {
+			for j := 0; j < len(filteredRes[i].Location.Locations); j++ {
+				if location == filteredRes[i].Location.Locations[j] {
 					tf = true
 					break
 				}
 			}
 			if !tf {
-				r = append(r[:i], r[i+1:]...)
+				filteredRes = append(filteredRes[:i], filteredRes[i+1:]...)
 				i--
 			}
 		}
@@ -101,7 +100,7 @@ func Search(res http.ResponseWriter, req *http.Request) {
 		ArtistsObj        []Res
 		FilteredLocations []string
 	}
-	data := &Data{r, FilteredLocations}
+	data := &Data{filteredRes, FilteredLocations}
 
 	err = tmpl.Execute(res, data)
 	if err != nil {

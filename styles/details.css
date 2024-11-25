@@ -102,6 +102,9 @@ div.tags span {
     border: none;
     cursor: pointer;
     transition: transform 0.3s;
+    position: absolute;
+  top: calc(4rem - 8px);
+  left: 100px;
 }
 
 .back:hover {

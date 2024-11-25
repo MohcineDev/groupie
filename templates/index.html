@@ -115,7 +115,7 @@
     <div class="container">
         {{range .ArtistsObj}}
         <div class="card">
-            <a href="/artists?q={{.ID}}">
+            <a href="/artists?q={{.ID}}" data-id="{{.ID}}">
                 <div class="item">
                     <img class="name" src="{{.Img}}" />
                     <h3 class="name">{{.Name}}</h3>

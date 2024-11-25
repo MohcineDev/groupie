@@ -40,17 +40,24 @@ func GetArtistsData() {
 		fmt.Println(err)
 		os.Exit(0)
 	}
-	////read in data from the incoming byte stream
+	////read all data from the incoming byte stream
 	resData, err := io.ReadAll(res.Body)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(0)
 	}
-	// json.NewDecoder(res).Decode(any)
+	// json.NGetArtistsDataewDecoder(res).Decode(any)
 
 	json.Unmarshal(resData, &ArtistsObj)
+
+	// fmt.Println("after : ", &ArtistsObj)
+	// var a *[]Res
+	a := &ArtistsObj
+	*a = append(ArtistsObj[0:20], ArtistsObj[24:]...)
+	ArtistsObj = *a
 }
 
+// /for filter select dropdown
 var FilteredLocations []string
 
 func GetArtistsLocations() {
